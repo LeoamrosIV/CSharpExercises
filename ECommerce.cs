@@ -5,6 +5,11 @@ namespace ECommerce
     class Customer
     {
         // Fields or Attributes
+        // Più privati possibili
+
+        // private string _X
+        // _X -> Underscore convenzione che indica attributo privato
+
         protected int Id;
         protected string FirstName;
         protected string LastName;
