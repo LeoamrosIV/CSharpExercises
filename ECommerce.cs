@@ -15,9 +15,9 @@ namespace ECommerce
         {
             Console.WriteLine("You are logged in ...");
         }
-        public void Purchase()
+        public void CheckOut()
         {
-            Console.WriteLine("Product purchased.");
+            Console.WriteLine("Product(s) purchased.");
         }
         public void MyOrders()
         {
