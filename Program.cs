@@ -1,12 +1,14 @@
 ﻿using System;
 
-namespace CSharpExercises
+namespace ECommerce
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Enter your name:");
+            string tuoNome = Console.ReadLine();
+            Console.WriteLine($"Il tuo nome è {tuoNome.ToUpper()}!");
         }
     }
 }
