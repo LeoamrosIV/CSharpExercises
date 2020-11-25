@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ECommerce
+namespace CSharpExercises
 {
     class Program
     {
