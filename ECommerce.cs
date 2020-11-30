@@ -82,7 +82,7 @@ namespace ECommerce
         }
         public void List() 
         {
-            Console.WriteLine($"Id: {this.Id}, description: {this.Description}, price: {this.Price}");
+            Console.WriteLine("List all articles");
         }
         public void Retrieve()
         {
