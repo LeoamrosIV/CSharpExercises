@@ -98,7 +98,8 @@ namespace ECommerce
         }
     }
 
-    class OrderHeader {
+    class OrderHeader 
+    {
         private int Id;
         private int OrderNumber;
         private DateTime Date;
