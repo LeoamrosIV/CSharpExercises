@@ -64,10 +64,12 @@ namespace ECommerce
 
     class Article
     {
+        // private int Id; // Field
+        // private int Id { get; set; }; // Proprietà
         private int Id;
-        private string Description;
-        private double Price;
-        private int Stock;
+        public string Description { get; set; }
+        public double Price { get; set; }
+        public int Stock { get; set; }
         private int Taxes;
         
         public Article(string description, double price)
@@ -101,9 +103,9 @@ namespace ECommerce
     class OrderHeader 
     {
         private int Id;
-        private int OrderNumber;
-        private DateTime Date;
-        private int UserId;
+        public string OrderNumber { get; }
+        public DateTime Date { get; }
+        public int UserId { get; }
 
         public OrderHeader(int userId, DateTime date)
         {

@@ -28,11 +28,19 @@ namespace CSharpExercises
             article.Retrieve(0);
             article.Destroy(0);
 
+            Console.WriteLine(article.Description); // GET
+            article.Description = "Red scarf"; // SET
+
+            Console.WriteLine($"{article.Description} price: {article.Price}");
+
             OrderHeader orderHeader = new OrderHeader(101, DateTime.Now);
 
             orderHeader.List();
             orderHeader.Retrieve(0);
             orderHeader.Destroy(0);
+            
+            Console.WriteLine($"Date: {orderHeader.Date}, UserID: {orderHeader.UserId}");
+
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);
             Console.WriteLine("Enter your name:");
