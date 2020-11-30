@@ -22,7 +22,7 @@ namespace CSharpExercises
             Customer.PrintSomething();
 
 
-            Article article = new Article("Face mask", 12.44, 0);
+            Article article = new Article("Face mask", 12.44);
 
             article.List();
             article.Retrieve();
