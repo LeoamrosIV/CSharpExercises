@@ -22,6 +22,13 @@ namespace CSharpExercises
             Customer.PrintSomething();
 
 
+            Article article = new Article("Face mask", 12.44, 0);
+
+            article.List();
+            article.Retrieve();
+            article.Destroy();
+
+
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);
             Console.WriteLine("Enter your name:");

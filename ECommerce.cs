@@ -61,4 +61,40 @@ namespace ECommerce
             Console.WriteLine("Something");
         }
     }
+
+    class Article
+    {
+        private int Id;
+        private string Description;
+        private double Price;
+        private int Stock;
+        private int Taxes;
+        
+        public Article(string description, double price)
+        {
+            this.Description = description;
+            this.Price = price;
+        }
+
+        public void Create()
+        {
+            Console.WriteLine("Create new article");
+        }
+        public void List() 
+        {
+            Console.WriteLine($"Id: {this.Id}, description: {this.Description}, price: {this.Price}");
+        }
+        public void Retrieve()
+        {
+            Console.WriteLine($"Id: {this.Id}, description: {this.Description}, price: {this.Price}");
+        }
+        public void Update()
+        {
+            Console.WriteLine("Update your article.");
+        }
+        public void Destroy()
+        {
+            Console.WriteLine("Destroy article.");
+        }
+    }
 }
