@@ -84,7 +84,7 @@ namespace ECommerce
         {
             Console.WriteLine("List all articles");
         }
-        public void Retrieve()
+        public void Retrieve(int id)
         {
             Console.WriteLine($"Id: {this.Id}, description: {this.Description}, price: {this.Price}");
         }
@@ -92,9 +92,44 @@ namespace ECommerce
         {
             Console.WriteLine("Update your article.");
         }
-        public void Destroy()
+        public void Destroy(int id)
         {
-            Console.WriteLine("Destroy article.");
+            Console.WriteLine($"You just destroyed item #{id}");
+        }
+    }
+
+    class OrderHeader {
+        private int Id;
+        private int OrderNumber;
+        private DateTime Date;
+        private int UserId;
+
+        public OrderHeader(int userId, DateTime date)
+        {
+            // È possibile anche scrivere "UserId = userId;" senza il this
+            this.UserId = userId;
+            this.Date = date;
+        }
+
+        public void Create()
+        {
+            Console.WriteLine("Create new order");
+        }
+        public void List() 
+        {
+            Console.WriteLine("List all orders");
+        }
+        public void Retrieve(int id)
+        {
+            Console.WriteLine($"Id: {this.Id}, OrderNumber: {this.OrderNumber}, UserId: {this.UserId}, Date: {this.Date}");
+        }
+        public void Update()
+        {
+            Console.WriteLine("Update your order.");
+        }
+        public void Destroy(int id)
+        {
+            Console.WriteLine($"You just destroyed order #{id}");
         }
     }
 }

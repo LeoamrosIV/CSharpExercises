@@ -25,10 +25,14 @@ namespace CSharpExercises
             Article article = new Article("Face mask", 12.44);
 
             article.List();
-            article.Retrieve();
-            article.Destroy();
+            article.Retrieve(0);
+            article.Destroy(0);
 
+            OrderHeader orderHeader = new OrderHeader(101, DateTime.Now);
 
+            orderHeader.List();
+            orderHeader.Retrieve(0);
+            orderHeader.Destroy(0);
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);
             Console.WriteLine("Enter your name:");
