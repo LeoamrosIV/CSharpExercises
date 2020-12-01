@@ -19,10 +19,10 @@ namespace CSharpExercises
             Customer secondCustomer = new Customer("Mario", "Rossi", "m.rossi99@hotmail.com");
             secondCustomer.Login();
 
-            Customer.PrintSomething();
+            Customer.SaySomething();
 
 
-            Article article = new Article("Face mask", 12.44);
+            Article article = new Article("Face mask", 12.44, true);
 
             article.List();
             article.Retrieve(0);
@@ -40,6 +40,15 @@ namespace CSharpExercises
             orderHeader.Destroy(0);
             
             Console.WriteLine($"Date: {orderHeader.Date}, UserID: {orderHeader.UserId}");
+
+
+            firstCustomer.Age = 11;
+            firstCustomer.GetAge();
+            firstCustomer.AddToCart(article);
+
+            secondCustomer.Age = 45;
+            secondCustomer.GetAge();
+            secondCustomer.AddToCart(article);
 
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);

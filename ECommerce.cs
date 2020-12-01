@@ -7,6 +7,9 @@ namespace ECommerce
         // Fields or Attributes
         // Più privati possibili
 
+        // Properties
+        // getter - setter
+
         // private string _X
         // _X -> Underscore convenzione che indica attributo privato
 
@@ -17,9 +20,7 @@ namespace ECommerce
         protected int PostalCode;
         protected string Email;
         protected string Password;
-        
-        // Properties
-        // getter - setter
+        public int Age { get; set;}
 
         // Constructor
         public Customer(string firstName, string lastName, string email)
@@ -48,15 +49,28 @@ namespace ECommerce
         {
             Console.WriteLine("This is your wishlist.");
         }
-        public void AddToCart()
+        public void AddToCart(Article article)
         {
-            Console.WriteLine("Product added to cart!");
+            if (article.IsCustomerOldEnough(this))
+            {
+                Console.WriteLine($"{article.Description} added to cart!");
+            }
+            else
+            {
+                Console.WriteLine("You may not be able to purchase this item");
+            }
         }
         public void Signin()
         {
             Console.WriteLine("You are now signed in.");
         }
-        public static void PrintSomething()
+        public void GetAge()
+        {
+            Console.WriteLine($"{this.FirstName} {this.LastName} is {this.Age} years old");
+            if (this.Age < 18) Console.WriteLine("This customer might not be able to buy certain articles");
+        }
+
+        public static void SaySomething()
         {
             Console.WriteLine("Something");
         }
@@ -66,16 +80,18 @@ namespace ECommerce
     {
         // private int Id; // Field
         // private int Id { get; set; }; // Proprietà
-        private int Id;
+        public int Id { get; }
         public string Description { get; set; }
         public double Price { get; set; }
         public int Stock { get; set; }
         private int Taxes;
+        private bool AdultsOnly;
         
-        public Article(string description, double price)
+        public Article(string description, double price, bool adultsOnly)
         {
             this.Description = description;
             this.Price = price;
+            this.AdultsOnly = adultsOnly;
         }
 
         public void Create()
@@ -98,11 +114,20 @@ namespace ECommerce
         {
             Console.WriteLine($"You just destroyed item #{id}");
         }
+        public bool IsCustomerOldEnough(Customer customer)
+        {
+            if (this.AdultsOnly && customer.Age < 18) 
+            {
+                return false;
+            }
+            return true;
+
+        }
     }
 
     class OrderHeader 
     {
-        private int Id;
+        public int Id { get; }
         public string OrderNumber { get; }
         public DateTime Date { get; }
         public int UserId { get; }
@@ -128,7 +153,7 @@ namespace ECommerce
         }
         public void Update()
         {
-            Console.WriteLine("Update your order.");
+            Console.WriteLine("Update your order");
         }
         public void Destroy(int id)
         {
