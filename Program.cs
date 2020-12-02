@@ -51,20 +51,20 @@ namespace CSharpExercises
             secondCustomer.AddToCart(article); */
 
             Customer luigi = new Customer("Luigi", "Mario", "luigi.mario@nintendo.com");
-            Customer sonic = new Customer("sonic", "Hedgehog", "sonic.hedgehog@sega.com");
+            Customer sonic = new Customer("Sonic", "Hedgehog", "sonic.hedgehog@sega.com");
             Article gloves = new Article("White gloves", 13.49, true);
 
             luigi.Age = 16;
             luigi.GetAge();
 
-            gloves.AddToCart(luigi);
+            luigi.AddToCart(gloves);
 
             Console.WriteLine("");
 
             sonic.Age = 21;
             sonic.GetAge();
             
-            gloves.AddToCart(sonic);
+            sonic.AddToCart(gloves);
 
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);

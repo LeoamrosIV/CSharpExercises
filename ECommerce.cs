@@ -59,6 +59,17 @@ namespace ECommerce
         {
             Console.WriteLine("This is your wishlist.");
         }
+        public void AddToCart(Article article)
+        {
+            if (article.AdultsOnly && this.Age < 18)
+            {
+                Console.WriteLine("You may not be able to purchase this item");
+            }
+            else
+            {
+                Console.WriteLine($"{article.Description} added to cart!");
+            }
+        }
         public void ShowCart()
         {
             Console.WriteLine("Show items in your cart");
@@ -88,7 +99,7 @@ namespace ECommerce
         public double Price { get; set; }
         public int Stock { get; set; }
         private int Taxes;
-        private bool AdultsOnly;
+        public bool AdultsOnly { get; }
         
         public Article(string description, double price, bool adultsOnly)
         {
@@ -116,26 +127,6 @@ namespace ECommerce
         public void Destroy(int id)
         {
             Console.WriteLine($"You just destroyed item #{id}");
-        }
-        public void AddToCart(Customer customer)
-        {
-            if (this.IsCustomerOldEnough(customer))
-            {
-                Console.WriteLine($"{this.Description} added to cart!");
-            }
-            else
-            {
-                Console.WriteLine("You may not be able to purchase this item");
-            }
-        }
-        public bool IsCustomerOldEnough(Customer customer)
-        {
-            if (this.AdultsOnly && customer.Age < 18) 
-            {
-                return false;
-            }
-            return true;
-
         }
     }
 
