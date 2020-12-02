@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ECommerce
 {
@@ -13,15 +14,22 @@ namespace ECommerce
         // private string _X
         // _X -> Underscore convenzione che indica attributo privato
 
-        protected int Id;
-        protected string FirstName;
-        protected string LastName;
-        protected string Adress;
-        protected int PostalCode;
-        protected string Email;
-        protected string Password;
+
+        // Attributes
+        private int _id;
+        private string _firstName;
+        private string _lastName;
+        private string _adress;
+        private int _postalCode;
+        private string _email;
+        private string _password;
         private int _age;
 
+        // Properties
+        public int Id { get => _id; set => _id = value; }
+        public string FirstName { get => _firstName; set => _firstName = value; }
+        public string LastName { get => _lastName; set => _lastName = value; }
+        public string Email { get => _email; set => _email = value; }
         public int Age 
         { 
             get => _age;
@@ -33,12 +41,13 @@ namespace ECommerce
         }
 
         // Constructor
-        public Customer(string firstName, string lastName, string email)
+        public Customer(string firstName, string lastName, string email, Customers customers)
         {
             // Called on instantiation
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Email = email;
+            customers.AddCustomer(this);
         }
 
         // Methods
@@ -87,6 +96,37 @@ namespace ECommerce
         public static void SaySomething()
         {
             Console.WriteLine("Something");
+        }
+    }
+
+    class Customers
+    {
+        private List<Customer> _customersList;
+        public List<Customer> CustomersList
+        { 
+            get => _customersList; 
+        }
+
+        public Customers()
+        {
+            this._customersList = new List<Customer>();
+        }
+
+        public void ShowCustomers()
+        {
+            Console.WriteLine("Customers list:");
+            foreach (Customer customer in this._customersList)
+            {
+                Console.WriteLine($"Id: {customer.Id}, First name: {customer.FirstName}, Last name: {customer.LastName}, e-mail: {customer.Email}");
+            }
+        }
+        public void AddCustomer(Customer customer)
+        {
+            this._customersList.Add(customer);
+        }
+        public void RemoveCustomer(Customer customer)
+        {
+            this._customersList.Remove(customer);
         }
     }
 
