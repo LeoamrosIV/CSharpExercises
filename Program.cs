@@ -51,8 +51,12 @@ namespace CSharpExercises
             secondCustomer.AddToCart(article); */
             Customers ListOfCustomers = new Customers();
 
-            Customer luigi = new Customer("Luigi", "Mario", "luigi.mario@nintendo.com", ListOfCustomers);
-            Customer sonic = new Customer("Sonic", "Hedgehog", "sonic.hedgehog@sega.com", ListOfCustomers);
+            Customer luigi = new Customer("Luigi", "Mario", "luigi.mario@nintendo.com");
+            ListOfCustomers.AddCustomer(luigi);
+            
+            Customer sonic = new Customer("Sonic", "Hedgehog", "sonic.hedgehog@sega.com");
+            ListOfCustomers.AddCustomer(sonic);
+            
             Article gloves = new Article("White gloves", 13.49, true);
 
             luigi.Age = 16;
@@ -67,13 +71,13 @@ namespace CSharpExercises
             
             sonic.AddToCart(gloves);
 
-            ListOfCustomers.ShowCustomers();
+            ListOfCustomers.ListCustomers();
 
             ListOfCustomers.RemoveCustomer(luigi);
-            ListOfCustomers.ShowCustomers();
+            ListOfCustomers.ListCustomers();
 
             ListOfCustomers.AddCustomer(luigi);
-            ListOfCustomers.ShowCustomers();
+            ListOfCustomers.ListCustomers();
 
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);

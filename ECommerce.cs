@@ -41,13 +41,12 @@ namespace ECommerce
         }
 
         // Constructor
-        public Customer(string firstName, string lastName, string email, Customers customers)
+        public Customer(string firstName, string lastName, string email)
         {
             // Called on instantiation
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Email = email;
-            customers.AddCustomer(this);
         }
 
         // Methods
@@ -112,7 +111,7 @@ namespace ECommerce
             this._customersList = new List<Customer>();
         }
 
-        public void ShowCustomers()
+        public void ListCustomers()
         {
             Console.WriteLine("Customers list:");
             foreach (Customer customer in this._customersList)
