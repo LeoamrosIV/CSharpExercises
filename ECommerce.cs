@@ -20,7 +20,17 @@ namespace ECommerce
         protected int PostalCode;
         protected string Email;
         protected string Password;
-        public int Age { get; set;}
+        private int _age;
+
+        public int Age 
+        { 
+            get => _age;
+            set 
+            {
+                _age = value;
+                if (_age < 18) Console.WriteLine("You may not be able to buy certain articles");
+            }
+        }
 
         // Constructor
         public Customer(string firstName, string lastName, string email)
@@ -49,16 +59,9 @@ namespace ECommerce
         {
             Console.WriteLine("This is your wishlist.");
         }
-        public void AddToCart(Article article)
+        public void ShowCart()
         {
-            if (article.IsCustomerOldEnough(this))
-            {
-                Console.WriteLine($"{article.Description} added to cart!");
-            }
-            else
-            {
-                Console.WriteLine("You may not be able to purchase this item");
-            }
+            Console.WriteLine("Show items in your cart");
         }
         public void Signin()
         {
@@ -113,6 +116,17 @@ namespace ECommerce
         public void Destroy(int id)
         {
             Console.WriteLine($"You just destroyed item #{id}");
+        }
+        public void AddToCart(Customer customer)
+        {
+            if (this.IsCustomerOldEnough(customer))
+            {
+                Console.WriteLine($"{this.Description} added to cart!");
+            }
+            else
+            {
+                Console.WriteLine("You may not be able to purchase this item");
+            }
         }
         public bool IsCustomerOldEnough(Customer customer)
         {

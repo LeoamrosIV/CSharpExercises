@@ -7,7 +7,7 @@ namespace CSharpExercises
     {
         static void Main(string[] args)
         {
-            for (int i = 0; i < args.Length; i++)
+            /* for (int i = 0; i < args.Length; i++)
             {
                 Console.WriteLine(args[i].ToUpper());
             }
@@ -48,7 +48,23 @@ namespace CSharpExercises
 
             secondCustomer.Age = 45;
             secondCustomer.GetAge();
-            secondCustomer.AddToCart(article);
+            secondCustomer.AddToCart(article); */
+
+            Customer luigi = new Customer("Luigi", "Mario", "luigi.mario@nintendo.com");
+            Customer sonic = new Customer("sonic", "Hedgehog", "sonic.hedgehog@sega.com");
+            Article gloves = new Article("White gloves", 13.49, true);
+
+            luigi.Age = 16;
+            luigi.GetAge();
+
+            gloves.AddToCart(luigi);
+
+            Console.WriteLine("");
+
+            sonic.Age = 21;
+            sonic.GetAge();
+            
+            gloves.AddToCart(sonic);
 
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);
