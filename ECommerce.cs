@@ -198,7 +198,7 @@ namespace ECommerce
         {
             Console.WriteLine("List all articles");
         }
-        public void Retrieve(int id)
+        public void Retrieve()
         {
             Console.WriteLine($"Id: {this.Id}, description: {this.Description}, price: {this.Price}");
         }
@@ -224,7 +224,10 @@ namespace ECommerce
         {
             this._articlesList = new List<Article>();
         }
-
+        public void Retrieve(int id)
+        {
+            Console.WriteLine($"Id: {id}, description: , price: ");
+        }
         public void ListArticles()
         {
             Console.WriteLine("Articles list:");
@@ -241,6 +244,10 @@ namespace ECommerce
         {
             this._articlesList.Remove(article);
         }
+        /* public static Article Search()
+        {
+            //
+        } */
     }
 
     class OrderHeader 
@@ -327,6 +334,10 @@ namespace ECommerce
         {
             Console.WriteLine("Product(s) purchased.");
         }
+        /* public void Add(Article article, int amount)
+        {
+            //
+        } */
         public void Delete()
         {
             Console.WriteLine("You just deleted your cart");
@@ -336,13 +347,4 @@ namespace ECommerce
             Console.WriteLine("Show items in your cart");
         }
     }
-
-    // Classes: Customer, Admin, Customers, OrderHeader, OrderDetail, Article, Articles, Cart
-    /* class Article // tabella articles
-    {
-        private int Id; // colonna id - primary key
-    } */
-    // class Admin : Customer {} // Ereditarietà
-    // ASP.NET Core - Object relational mapper - ORM
-    // Entity framework
 }

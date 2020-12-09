@@ -113,6 +113,25 @@ namespace CSharpExercises
             OrderDetail orderDetail = new OrderDetail(1, 2, 3);
             Console.WriteLine($"Order ID #{orderDetail.OrderId}: Article number #{orderDetail.ArticleId} x {orderDetail.ArticleAmount} pieces");
 
+            // Classes: Customer, Admin, Customers, OrderHeader, OrderDetail, Article, Articles, Cart
+            /* class Article // tabella articles
+            {
+                private int Id; // colonna id - primary key
+            } */
+            // class Admin : Customer {} // Ereditarietà
+            // ASP.NET Core - Object relational mapper - ORM
+            // Link
+            // Entity framework
+
+            // Customer luca = new Customer();
+            // Article searchedArticle = Articles.Search("Cappello rosso");
+            // new OrderHeader(luca.id); Create; Delete; List;
+            // new Articles(); // NO
+            // Articles.Add(); // SI PUO` FARE CON METODO STATICO?
+            // Cart.Add(searchedArticle); 
+            // BONUS: SCRIVERE SU FILE
+
+
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);
             Console.WriteLine("Enter your name:");
