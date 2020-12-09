@@ -49,35 +49,69 @@ namespace CSharpExercises
             secondCustomer.Age = 45;
             secondCustomer.GetAge();
             secondCustomer.AddToCart(article); */
-            Customers ListOfCustomers = new Customers();
+
+            Customers customersList = new Customers();
+            Articles articlesList = new Articles();
 
             Customer luigi = new Customer("Luigi", "Mario", "luigi.mario@nintendo.com");
-            ListOfCustomers.AddCustomer(luigi);
+            customersList.AddCustomer(luigi);
             
             Customer sonic = new Customer("Sonic", "Hedgehog", "sonic.hedgehog@sega.com");
-            ListOfCustomers.AddCustomer(sonic);
+            customersList.AddCustomer(sonic);
+
+            Customer alex = new Customer("Alex", "Kidd", "alex.kidd@miracleworld.net");
+            customersList.AddCustomer(alex);
             
-            Article gloves = new Article("White gloves", 13.49, true);
+            Article gloves = new Article("White gloves", 13.49, 0);
+            articlesList.AddArticle(gloves);
+
+            Article fedora = new Article("Black fedora", 16.99, 18);
+            articlesList.AddArticle(fedora);
 
             luigi.Age = 16;
             luigi.GetAge();
 
-            luigi.AddToCart(gloves);
+            luigi.AddToCart(fedora);
 
             Console.WriteLine("");
 
             sonic.Age = 21;
             sonic.GetAge();
+
+            alex.Age = 19;
             
             sonic.AddToCart(gloves);
 
-            ListOfCustomers.ListCustomers();
+            customersList.ListCustomers();
+            /* Customers list:
+            Id: 1, First name: Luigi, Last name: Mario, e-mail: luigi.mario@nintendo.com
+            Id: 2, First name: Sonic, Last name: Hedgehog, e-mail: sonic.hedgehog@sega.com
+            Id: 3, First name: Alex, Last name: Kidd, e-mail: alex.kidd@miracleworld.net */
 
-            ListOfCustomers.RemoveCustomer(luigi);
-            ListOfCustomers.ListCustomers();
+            /* customersList.RemoveCustomer(luigi);
+            customersList.ListCustomers();
 
-            ListOfCustomers.AddCustomer(luigi);
-            ListOfCustomers.ListCustomers();
+            customersList.AddCustomer(luigi);
+            customersList.ListCustomers(); */
+
+            articlesList.ListArticles();
+            /* Articles list:
+            Id: 1, description: White gloves, price: 13,49, Age Restriction: 0
+            Id: 2, description: Black fedora, price: 16,99, Age Restriction: 18 */
+
+            Admin mario = new Admin("Mario", "Mario", "mario.mario@nintendo.com");
+            customersList.AddCustomer(mario);
+
+            mario.ManageArticles();
+
+            customersList.ListCustomers();
+
+            Cart myCart = new Cart(1, 2, 4);
+            myCart.List();
+            myCart.CheckOut();
+
+            OrderDetail orderDetail = new OrderDetail(1, 2, 3);
+            Console.WriteLine($"Order ID #{orderDetail.OrderId}: Article number #{orderDetail.ArticleId} x {orderDetail.ArticleAmount} pieces");
 
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);

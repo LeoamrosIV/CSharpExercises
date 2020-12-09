@@ -16,14 +16,14 @@ namespace ECommerce
 
 
         // Attributes
-        private int _id;
-        private string _firstName;
-        private string _lastName;
-        private string _adress;
-        private int _postalCode;
-        private string _email;
-        private string _password;
-        private int _age;
+        protected int _id;
+        protected string _firstName;
+        protected string _lastName;
+        protected string _adress;
+        protected int _postalCode;
+        protected string _email;
+        protected string _password;
+        protected int _age;
 
         // Properties
         public int Id { get => _id; set => _id = value; }
@@ -40,13 +40,22 @@ namespace ECommerce
             }
         }
 
-        // Constructor
+        // ID generator
+        protected static int _idGen = 1;
+        protected static int GenerateId()
+        {
+            return _idGen++;
+        }
+
+        // Constructors
+        public Customer() {}
         public Customer(string firstName, string lastName, string email)
         {
             // Called on instantiation
-            this.FirstName = firstName;
-            this.LastName = lastName;
-            this.Email = email;
+            this._firstName = firstName;
+            this._lastName = lastName;
+            this._email = email;
+            this._id = GenerateId();
         }
 
         // Methods
@@ -54,10 +63,6 @@ namespace ECommerce
         public void Login()
         {
             Console.WriteLine($"Hi {this.FirstName} {this.LastName}, you are logged in.");
-        }
-        public void CheckOut()
-        {
-            Console.WriteLine("Product(s) purchased.");
         }
         public void MyOrders()
         {
@@ -69,7 +74,7 @@ namespace ECommerce
         }
         public void AddToCart(Article article)
         {
-            if (article.AdultsOnly && this.Age < 18)
+            if (this.Age >= article.AgeRestriction)
             {
                 Console.WriteLine("You may not be able to purchase this item");
             }
@@ -77,10 +82,6 @@ namespace ECommerce
             {
                 Console.WriteLine($"{article.Description} added to cart!");
             }
-        }
-        public void ShowCart()
-        {
-            Console.WriteLine("Show items in your cart");
         }
         public void Signin()
         {
@@ -95,6 +96,31 @@ namespace ECommerce
         public static void SaySomething()
         {
             Console.WriteLine("Something");
+        }
+    }
+
+    class Admin : Customer
+    {
+
+        public Admin(string firstName, string lastName, string email)
+        {
+            this._firstName = firstName;
+            this._lastName = lastName;
+            this._email = email;
+            this._id = GenerateId();
+        }
+
+        public void ManageOrders()
+        {
+            Console.WriteLine("Manage orders");
+        }
+        public void ManageArticles()
+        {
+            Console.WriteLine("Manage articles");
+        }
+        public void ManageCustomers()
+        {
+            Console.WriteLine("Manage customers");
         }
     }
 
@@ -133,18 +159,35 @@ namespace ECommerce
     {
         // private int Id; // Field
         // private int Id { get; set; }; // Proprietà
-        public int Id { get; }
-        public string Description { get; set; }
-        public double Price { get; set; }
-        public int Stock { get; set; }
-        private int Taxes;
-        public bool AdultsOnly { get; }
         
-        public Article(string description, double price, bool adultsOnly)
+        // Attributes
+        private int _id;
+        private string _description;
+        private double _price;
+        private int _stock;
+        private int _ageRestriction;
+        private int _taxes;
+
+        // Properties
+        public int Id { get => _id; set => _id = value; }
+        public string Description { get => _description; set => _description = value; }
+        public double Price { get => _price; set => _price = value; }
+        public int Stock { get => _stock; set => _stock = value; }
+        public int AgeRestriction { get => _ageRestriction; }
+        
+        // ID generator
+        private static int _idGen = 1;
+        static int generateId()
         {
-            this.Description = description;
-            this.Price = price;
-            this.AdultsOnly = adultsOnly;
+            return _idGen++;
+        }
+
+        public Article(string description, double price, int ageRestriction)
+        {
+            this._description = description;
+            this._price = price;
+            this._ageRestriction = ageRestriction;
+            this._id = generateId();
         }
 
         public void Create()
@@ -169,18 +212,53 @@ namespace ECommerce
         }
     }
 
+    class Articles
+    {
+        private List<Article> _articlesList;
+        public List<Article> ArticlesList
+        { 
+            get => _articlesList; 
+        }
+
+        public Articles()
+        {
+            this._articlesList = new List<Article>();
+        }
+
+        public void ListArticles()
+        {
+            Console.WriteLine("Articles list:");
+            foreach (Article article in this._articlesList)
+            {
+                Console.WriteLine($"Id: {article.Id}, description: {article.Description}, price: {article.Price}, Age Restriction: {article.AgeRestriction}");
+            }
+        }
+        public void AddArticle(Article article)
+        {
+            this._articlesList.Add(article);
+        }
+        public void RemoveArticle(Article article)
+        {
+            this._articlesList.Remove(article);
+        }
+    }
+
     class OrderHeader 
     {
-        public int Id { get; }
-        public string OrderNumber { get; }
-        public DateTime Date { get; }
-        public int UserId { get; }
+        private int _id;
+        private string _orderNumber;
+        private DateTime _date;
+        private int _userId;
+        public int Id { get => _id; }
+        public string OrderNumber { get => _orderNumber; }
+        public DateTime Date { get => _date; }
+        public int UserId { get => _userId; }
 
         public OrderHeader(int userId, DateTime date)
         {
             // È possibile anche scrivere "UserId = userId;" senza il this
-            this.UserId = userId;
-            this.Date = date;
+            this._userId = userId;
+            this._date = date;
         }
 
         public void Create()
@@ -204,4 +282,67 @@ namespace ECommerce
             Console.WriteLine($"You just destroyed order #{id}");
         }
     }
+
+    class OrderDetail
+    {
+        private int _id;
+        private int _orderId;
+        private int _articleId;
+        private double _price;
+        private int _articleAmount;
+
+        public int Id { get => _id; }
+        public int OrderId { get => _orderId; }
+        public int ArticleId { get => _articleId; }
+        public double Price { get => _price; }
+        public int ArticleAmount { get => _articleAmount; }
+
+        public OrderDetail(int orderId, int articleId, int articleAmount)
+        {
+            this._orderId = orderId;
+            this._articleId = articleId;
+            this._articleAmount = articleAmount;
+        }
+    }
+
+    class Cart
+    {
+        private int _id;
+        private int _articleId;
+        private int _userId;
+        private int _articleAmount;
+
+        public int Id { get => _id; }
+        public int ArticleId { get => _articleId; }
+        public int UserId { get => _userId; }
+        public int ArticleAmount { get => _articleAmount; }
+        
+        public Cart(int userId, int articleId, int articleAmount)
+        {
+            this._userId = userId;
+            this._articleId = articleId;
+            this._articleAmount = articleAmount;
+        }
+        public void CheckOut()
+        {
+            Console.WriteLine("Product(s) purchased.");
+        }
+        public void Delete()
+        {
+            Console.WriteLine("You just deleted your cart");
+        }
+        public void List()
+        {
+            Console.WriteLine("Show items in your cart");
+        }
+    }
+
+    // Classes: Customer, Admin, Customers, OrderHeader, OrderDetail, Article, Articles, Cart
+    /* class Article // tabella articles
+    {
+        private int Id; // colonna id - primary key
+    } */
+    // class Admin : Customer {} // Ereditarietà
+    // ASP.NET Core - Object relational mapper - ORM
+    // Entity framework
 }
