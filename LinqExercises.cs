@@ -4,43 +4,24 @@ using System.Linq;
 
 namespace LinqExercises
 {
-    class Cities
+    class FilteringUtils
     {
-        private List<string> _citiesList;
-        public List<string> CitiesList
-        { 
-            get => _citiesList; 
+        public static IEnumerable<string> SearchString(List<string> list, string searchTerm)
+        {
+            IEnumerable<string> query =
+                from i in list
+                where i == searchTerm
+                select i;
+            
+            return query;
         }
 
-        public Cities(List<string> cities)
+        public static void ListString(IEnumerable<string> list)
         {
-            this._citiesList = new List<string>(cities);
-        }
-
-        public void ListCities()
-        {
-            Console.WriteLine("Cities list:");
-            foreach (string city in this._citiesList)
+            foreach (string i in list)
             {
-                Console.WriteLine(city);
-            }
-        }
-        public void AddCity(string city)
-        {
-            this._citiesList.Add(city); 
-        }
-        public void RemoveCity(string city)
-        {
-            this._citiesList.Remove(city);
-        }
-        public IEnumerable<string> SelectCity(string city)
-        {
-            IEnumerable<string> citiesQuery =
-                from _city in this._citiesList
-                where _city == city
-                select _city;
-
-            return citiesQuery;
+                Console.WriteLine(i);
+            };
         }
     }
 }
