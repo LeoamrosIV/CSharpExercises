@@ -133,10 +133,21 @@ namespace CSharpExercises
             // Cart.Add(searchedArticle); 
             // BONUS: SCRIVERE SU FILE
 
+            //----------------------------------- Lavorare with LINQ #7 -----------------------------------//
             List<string> cities = new List<string> {"Arezzo", "Arezzo", "Siena", "Firenze", "Lucca"};
 
             IEnumerable<string> myQuery = FilteringUtils.SearchString(cities, "Arezzo");
             FilteringUtils.ListString(myQuery);
+
+            //----------------------------------- Working with LINQ pt2 #8 -----------------------------------//
+
+            string mountainsString = "Monte Falco, 1658, Parco Foreste Casentinesi ; Monte Falterona, 1654, Parco Foreste Casentinesi; Monte Fumaiolo, 1407, Appennino Tosco Emiliano";
+            List<string> mountainsList = FilteringUtils.SeparateStrings(mountainsString, ';');
+
+            foreach (string mountain in mountainsList)
+            {
+                Console.WriteLine(FilteringUtils.SeparateStrings(mountain, ',')[0]);
+            }
 
 
             /* Console.WriteLine(args[0]);

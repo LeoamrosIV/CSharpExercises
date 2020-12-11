@@ -23,5 +23,16 @@ namespace LinqExercises
                 Console.WriteLine(i);
             };
         }
+
+        public static List<string> SeparateStrings(string myString, char divisor)
+        {
+            List<string> resultList = new List<string>();
+            foreach (string i in myString.Split(divisor))
+            {
+                resultList.Add(i.Trim());
+            }
+
+            return resultList;
+        }
     }
 }
