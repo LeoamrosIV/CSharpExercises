@@ -1,5 +1,7 @@
 ﻿using System;
 using ECommerce;
+using System.Collections.Generic;
+using LinqExercises;
 
 namespace CSharpExercises
 {
@@ -120,7 +122,7 @@ namespace CSharpExercises
             } */
             // class Admin : Customer {} // Ereditarietà
             // ASP.NET Core - Object relational mapper - ORM
-            // Link
+            // Linq
             // Entity framework
 
             // Customer luca = new Customer();
@@ -131,6 +133,16 @@ namespace CSharpExercises
             // Cart.Add(searchedArticle); 
             // BONUS: SCRIVERE SU FILE
 
+            Cities cities = new Cities(new List<string> {"Arezzo", "Arezzo", "Siena", "Firenze", "Lucca"});
+
+            //cities.ListCities();
+
+            IEnumerable<string> myQuery = cities.SelectCity("Arezzo");
+
+            foreach (string city in myQuery)
+            {
+                Console.WriteLine(city);
+            };
 
             /* Console.WriteLine(args[0]);
             Console.WriteLine(args[1]);
