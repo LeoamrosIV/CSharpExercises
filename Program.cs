@@ -39,8 +39,6 @@ namespace CSharpExercises
 
             marcoCart.List();
 
-            // marcoCart.Add([hat, redHat]);
-
             marcoCart.Total();
         }
     }
