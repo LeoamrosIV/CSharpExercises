@@ -38,6 +38,22 @@ namespace LinqExercises
         {
             return FilteringUtils.SeparateStrings(myString, divisor)[0];
         }
+
+        /* public static void FirstColumnQuery(string source, char separator)
+        // Esempio scritto da Marco
+        {
+            IEnumerable<string> firstColumnQuery=
+                from element in source.Split(separator)
+                let trimmed = element.Trim()
+                let splitted = trimmed.Split(",")[0]
+                where splitted.Contains("Monte Falterona")
+                select splitted;
+            
+            foreach (var peaks in firstColumnQuery)
+            {
+                Console.WriteLine(peaks);
+            }
+        } */
     }
 
     class Mountain
