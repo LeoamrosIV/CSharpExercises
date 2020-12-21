@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace ECommerce
 {
@@ -219,6 +220,27 @@ namespace ECommerce
         {
             Console.WriteLine($"You just destroyed item #{id}");
         }
+        public string ToInlineString()
+        {
+            return $"{this._id}; {this._description}; {this._size}; {this._price}; {this._taxes}; {this._stock}; {this._ageRestriction}";
+        }
+        public static void SearchInFile(string path, string searchTerm)
+        {
+            string[] lines = File.ReadAllLines(path);
+            var query = 
+                from line in lines
+                let row = line.Split(';')
+                let descriptionColumn = row[1].Trim()
+                where descriptionColumn.Contains(searchTerm)
+                select line;
+            
+            Console.WriteLine($"\nArticles found in {path}:");
+            foreach (var line in query)
+            {
+                Console.WriteLine(line);
+            }
+            // seleziona line dove descriptionColumn == searchTerm
+        }
     }
 
     class Articles
@@ -337,7 +359,23 @@ namespace ECommerce
                 Console.WriteLine("Nothing found");
                 return null;
             }
-            
+        }
+
+        public void WriteFile(string path)
+        {
+            File.WriteAllLines(path, this.ToStringList());
+        }
+
+        public List<string> ToStringList()
+        {
+            List<string> articlesStrings = new List<string>();
+
+            foreach (var article in this._articlesList)
+            {
+                articlesStrings.Add(article.ToInlineString());
+            }
+
+            return articlesStrings;
         }
     }
 
@@ -448,15 +486,50 @@ namespace ECommerce
             }
         }
         public double Total()
-        {   
+        {
             double total = 0;
             for (int i = 0; i < this._articles.Count; i++)
             {
-                total += (_articles[i].Price * _amount[i]);
+                total += (this._articles[i].Price * this._amount[i]);
             }
 
-            Console.WriteLine($"\nTotal price: ${total}");
+            Console.WriteLine($"\nTotal price: ${String.Format("{0:0.00}", total)}");
             return total;
+        }
+        public static double TotalFromFile(string path)
+        {
+            var query =
+                from line in File.ReadAllLines(path)
+                let row = line.Split(';')
+                let price = double.Parse(row[3].Trim())
+                let amount = int.Parse(row[7].Trim())
+                let articleTotal = price*amount
+                select articleTotal;
+            
+            double total = 0.0;
+            foreach (double price in query)
+            {
+                total += price;
+            }
+            
+            Console.WriteLine($"\nTotal price: ${String.Format("{0:0.00}", total)}");
+            return total;
+        }
+        public void WriteFile(string path)
+        {
+            File.WriteAllLines(path, this.ToStringList());
+        }
+
+        public List<string> ToStringList()
+        {
+            List<string> articlesStrings = new List<string>();
+
+            for (int i = 0; i < this._articles.Count; i++)
+            {
+                articlesStrings.Add($"{this._articles[i].ToInlineString()}; {this._amount[i]}");
+            }
+
+            return articlesStrings;
         }
     }
 }

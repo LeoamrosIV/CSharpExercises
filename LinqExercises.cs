@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace LinqExercises
 {
@@ -121,4 +122,76 @@ namespace LinqExercises
             this._mountainsList.Remove(mountain);
         }
     }
+    class Person
+    {
+        // Fields
+        protected string _firstName;
+        protected string _lastName;
+        protected int _age;
+        protected bool _isAlive = true;
+
+        // Properties
+        public string Age
+        {
+            get => _age.ToString();
+            set
+            {
+                try
+                {
+                    var parsedAge = Int32.Parse(value);
+                    this._age = parsedAge;
+                }
+                catch (FormatException error)
+                {
+                    string logLine = $"{DateTime.Now} - {error.Message}\n{error.StackTrace}\n";
+                    File.AppendAllText("./error_log.txt", logLine);
+                    Console.WriteLine($"Format error: please insert a valid integer for the age\nError details: {error.Message}");
+                }
+            }
+        }
+
+        public Person(string firstName, string lastName, string age)
+        {
+            this._firstName = firstName;
+            this._lastName = lastName;
+            this.Age = age;
+        }
+        public void Save(string path)
+        // Appends person's data to the selected path
+        {
+            string stringifiedPerson = $"{this._firstName}; {this._lastName}; {this._age}\n";
+            File.AppendAllText(path, stringifiedPerson);
+        }
+        public void Breath()
+        {
+            if (this._isAlive)
+            {
+                Console.WriteLine("I am breathing. Yay!");
+            }
+            else
+            {
+                Console.WriteLine("Nothing is happening");
+            }
+        }
+        public void Die()
+        {
+            this._isAlive = false;
+            Console.WriteLine($"{this._firstName} is dead");
+        }
+        public void Fly()
+        {
+            Console.WriteLine($"My name is {this._firstName} {this._lastName} and I'm flying");
+        }
+    }
+
+    /*class Brother : Person
+    {
+
+        public Brother(string firstName, string lastName, int age) : base(firstName, lastName, age)
+        { // base si riferisce al costruttore della super-classe 
+            this._firstName = firstName;
+            this._lastName = lastName;
+            this._age = age;
+        }
+    }*/
 }

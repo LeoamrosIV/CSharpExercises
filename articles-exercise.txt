@@ -1,0 +1,6 @@
+1; Hat; L; 15,99; 0; 0; 0
+2; Red Hat; XL; 16,75; 0; 0; 0
+3; Red Scarf; M; 11,49; 0; 0; 0
+4; Pink Gloves; S; 17,85; 0; 0; 0
+5; Red Sockets; M; 4,59; 0; 0; 0
+6; White Scarf; L; 18,6; 0; 0; 0

@@ -1,0 +1,15 @@
+21/12/2020 11:34:01 - Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseInt32(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at LinqExercises.Person.set_Age(String value) in D:\Users\Luca\Documents\Code\CSharp\Corso\CSharpExercises\LinqExercises.cs:line 140
+21/12/2020 11:37:57 - Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseInt32(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at LinqExercises.Person.set_Age(String value) in D:\Users\Luca\Documents\Code\CSharp\Corso\CSharpExercises\LinqExercises.cs:line 140
+21/12/2020 12:03:26 - Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Number.ParseInt32(ReadOnlySpan`1 value, NumberStyles styles, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at LinqExercises.Person.set_Age(String value) in D:\Users\Luca\Documents\Code\CSharp\Corso\CSharpExercises\LinqExercises.cs:line 141
