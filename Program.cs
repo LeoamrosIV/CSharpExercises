@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using LinqExercises;
 using System.Linq;
 using System.IO;
+using UsersList;
 
 namespace CSharpExercises
 {
@@ -11,13 +12,30 @@ namespace CSharpExercises
     {
         static void Main(string[] args)
         {
-            
-            
+            UsersExercise();
+
             // TO DO: finisci Article.SearchInFile()
-            SearchExample();
+            // SearchExample();
             // AggregateExercise();
             // ReadAndWriteFileExercise();
             // PersonFromConsoleExercise(args);
+        }
+
+        static void UsersExercise()
+        {
+            User marco = new User("Marco", 33);
+            User francesco = new User("Francesco", 15);
+            User giovanni = new User("Giovanni", 69);
+            User paola = new User("Paola", 21);
+            User marcella = new User("Marcella", 29);
+
+            ListOfUsers myUsers = new ListOfUsers();
+            myUsers.Add(new User[] {marco, francesco, giovanni, paola, marcella});
+            myUsers.List();
+
+            var myQuery = myUsers.Search("c");
+
+            ListOfUsers.WriteSearchResultInFile("./UsersList.txt", myQuery);
         }
 
         static void SearchExample()
