@@ -5,6 +5,7 @@ using LinqExercises;
 using System.Linq;
 using System.IO;
 using UsersList;
+using MeterExercise;
 
 namespace CSharpExercises
 {
@@ -12,15 +13,25 @@ namespace CSharpExercises
     {
         static void Main(string[] args)
         {
-            UsersExercise();
-
-            // TO DO: finisci Article.SearchInFile()
+            MeterConvertExercise();
+            // UsersExercise();
             // SearchExample();
             // AggregateExercise();
             // ReadAndWriteFileExercise();
             // PersonFromConsoleExercise(args);
         }
 
+        static void MeterConvertExercise()
+        {
+            EuMeter myEuMeter = new EuMeter();
+            UsaMeter myUsaMeter = new UsaMeter();
+
+            myEuMeter.Speed(1000, 3600);
+            myUsaMeter.Speed(1, 3600);
+
+            myEuMeter.ConvertSpeed(1);
+            myUsaMeter.ConvertSpeed(1);
+        }
         static void UsersExercise()
         {
             User marco = new User("Marco", 33);
