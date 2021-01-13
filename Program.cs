@@ -23,14 +23,14 @@ namespace CSharpExercises
 
         static void MeterConvertExercise()
         {
-            EuSpeedometer myEuMeter = new EuSpeedometer();
-            UsaSpeedometer myUsaMeter = new UsaSpeedometer();
+            EuSpeedometer myEuSpeedometer = new EuSpeedometer();
+            UsaSpeedometer myUsaSpeedometer = new UsaSpeedometer();
 
-            myEuMeter.Speed(1000, 3600);
-            myUsaMeter.Speed(5280, 3600);
+            myEuSpeedometer.Speed(1000, 3600);
+            myUsaSpeedometer.Speed(5280, 3600);
 
-            myEuMeter.ConvertSpeed(1);
-            myUsaMeter.ConvertSpeed(1);
+            myEuSpeedometer.ConvertSpeed(1);
+            myUsaSpeedometer.ConvertSpeed(1);
         }
 
         static void UsersExercise()
