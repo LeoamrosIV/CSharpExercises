@@ -14,11 +14,11 @@ namespace CSharpExercises
         static void Main(string[] args)
         {
             MeterConvertExercise();
-            // UsersExercise();
-            // SearchExample();
-            // AggregateExercise();
-            // ReadAndWriteFileExercise();
-            // PersonFromConsoleExercise(args);
+            //UsersExercise();
+            //SearchExample();
+            //AggregateExercise();
+            //ReadAndWriteFileExercise();
+            //PersonFromConsoleExercise(args);
         }
 
         static void MeterConvertExercise()

@@ -2,39 +2,47 @@ using System;
 
 namespace MeterExercise
 {
-    abstract class Speedometer
+    abstract class AbstractSpeedometer
     {
-        public abstract void Speed(double space, double time);
-        public abstract void ConvertSpeed(double speed);
+        public abstract double Speed(double space, double time);
+        public abstract double ConvertSpeed(double speed);
     }
 
-    class EuSpeedometer : Speedometer
+    class EuSpeedometer : AbstractSpeedometer
     {
         public EuSpeedometer(){}
         
-        public override void Speed(double meters, double seconds)
+        public override double Speed(double meters, double seconds)
         {
-            Console.WriteLine($"\nYour speed is {(meters/1000)/(seconds/3600)} Km/h");
+            double result = (meters/1000)/(seconds/3600);
+            Console.WriteLine($"\nYour speed is {result} Km/h");
+            return result;
         }
 
-        public override void ConvertSpeed(double speed)
+        public override double ConvertSpeed(double speed)
         {
-            Console.WriteLine($"\n{speed} Mph equals {speed*1.609344} Km/h");
+            double result = speed*1.609344;
+            Console.WriteLine($"\n{speed} Mph equals {result} Km/h");
+            return result;
         }
     }
 
-    class UsaSpeedometer : Speedometer
+    class UsaSpeedometer : AbstractSpeedometer
     {
         public UsaSpeedometer(){}
 
-        public override void Speed(double feets, double seconds)
+        public override double Speed(double feets, double seconds)
         {
-            Console.WriteLine($"\nYour speed is {(feets/5280)/(seconds/3600)} Mph");
+            double result = (feets/5280)/(seconds/3600);
+            Console.WriteLine($"\nYour speed is {result} Mph");
+            return result;
         }
 
-        public override void ConvertSpeed(double speed)
+        public override double ConvertSpeed(double speed)
         {
-            Console.WriteLine($"\n{speed} Km/h equals {speed/1.609344} Mph");
+            double result = speed/1.609344;
+            Console.WriteLine($"\n{speed} Km/h equals {result} Mph");
+            return result;
         }
     }
 }
