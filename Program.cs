@@ -13,12 +13,19 @@ namespace CSharpExercises
     {
         static void Main(string[] args)
         {
-            MeterConvertExercise();
+            AbstractUserTest();
+            //MeterConvertExercise();
             //UsersExercise();
             //SearchExample();
             //AggregateExercise();
             //ReadAndWriteFileExercise();
             //PersonFromConsoleExercise(args);
+        }
+
+        static void AbstractUserTest()
+        {
+            Customer giovanni = new Customer("Giovanni", "Bianchi", "gb2021@mail.com", "00000", 21);
+            giovanni.Login("gb2021@mail.com", "00000");
         }
 
         static void MeterConvertExercise()
@@ -31,6 +38,8 @@ namespace CSharpExercises
 
             myEuSpeedometer.ConvertSpeed(1);
             myUsaSpeedometer.ConvertSpeed(1);
+
+            myUsaSpeedometer.GetMilesPerYear(50);
         }
 
         static void UsersExercise()
@@ -57,8 +66,8 @@ namespace CSharpExercises
             Articles articlesList = new Articles();
 
             // Customers
-            Customer marco = new Customer("Marco", "Camici", "marco.camici@hotmail.it", 33);
-            Customer francesco = new Customer("Francesco", "Bacci", "madcatxxx@gmail.com", 34);
+            Customer marco = new Customer("Marco", "Camici", "marco.camici@hotmail.it", "12345", 33);
+            Customer francesco = new Customer("Francesco", "Bacci", "madcatxxx@gmail.com", "12345", 34);
 
             // Articles
             Article hat = new Article("Hat", 15.99, 0, "L");
@@ -148,6 +157,7 @@ namespace CSharpExercises
         }
 
         static void PersonFromConsoleExercise(string[] args)
+        // dotnet run firstName lastName age
         {
             if (args.Length == 3)
             {

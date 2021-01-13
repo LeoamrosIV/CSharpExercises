@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
 
 namespace ECommerce
 {
-    class Customer
+    class Customer : AbstractUser
     {
         // Fields or Attributes
         // Più privati possibili
@@ -18,20 +15,20 @@ namespace ECommerce
 
 
         // Attributes
-        protected int _id;
+        /* protected int _id;
         protected string _firstName;
-        protected string _lastName;
+        protected string _lastName; */
         protected string _adress;
         protected int _postalCode;
-        protected string _email;
-        protected string _password;
+        /* protected string _email;
+        protected string _password; */
         protected int _age;
 
         // Properties
-        public int Id { get => _id; set => _id = value; }
+        /* public int Id { get => _id; set => _id = value; }
         public string FirstName { get => _firstName; set => _firstName = value; }
         public string LastName { get => _lastName; set => _lastName = value; }
-        public string Email { get => _email; set => _email = value; }
+        public string Email { get => _email; set => _email = value; } */
         public int Age 
         { 
             get => _age;
@@ -43,29 +40,37 @@ namespace ECommerce
         }
 
         // ID generator
-        protected static int _idGen = 1;
+        /* protected static int _idGen = 1;
         protected static int GenerateId()
         {
             return _idGen++;
-        }
+        } */
 
         // Constructors
         public Customer() {}
-        public Customer(string firstName, string lastName, string email, int age)
+        public Customer(string firstName, string lastName, string email, string password, int age)
         {
             // Called on instantiation
             this._firstName = firstName;
             this._lastName = lastName;
             this._email = email;
+            this._password = password;
             this._age = age;
             this._id = GenerateId();
         }
 
         // Methods
         // visibilità - valore di ritorno - NomeMetodo()
-        public void Login()
+        public override void Login(string email, string password)
         {
-            Console.WriteLine($"Hi {this.FirstName} {this.LastName}, you are logged in.");
+            if (email == this._email & password == this._password)
+            {
+                Console.WriteLine($"Hi {this._firstName} {this._lastName}, you are logged in.");
+            }
+            else
+            {
+                Console.WriteLine("Wrong username or password");
+            }
         }
         public void MyOrders()
         {

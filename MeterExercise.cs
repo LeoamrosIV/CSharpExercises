@@ -8,6 +8,11 @@ namespace MeterExercise
         public abstract double ConvertSpeed(double speed);
     }
 
+    interface IUsaSpeedometer
+    {
+        void GetMilesPerYear(double mph);
+    }
+
     class EuSpeedometer : AbstractSpeedometer
     {
         public EuSpeedometer(){}
@@ -27,7 +32,7 @@ namespace MeterExercise
         }
     }
 
-    class UsaSpeedometer : AbstractSpeedometer
+    class UsaSpeedometer : AbstractSpeedometer, IUsaSpeedometer
     {
         public UsaSpeedometer(){}
 
@@ -43,6 +48,11 @@ namespace MeterExercise
             double result = speed/1.609344;
             Console.WriteLine($"\n{speed} Km/h equals {result} Mph");
             return result;
+        }
+        
+        public void GetMilesPerYear(double mph)
+        {
+            Console.WriteLine($"\n{mph} miles per hour equals {mph*8760} miles per year");
         }
     }
 }
