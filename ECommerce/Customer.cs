@@ -18,7 +18,7 @@ namespace ECommerce
         /* protected int _id;
         protected string _firstName;
         protected string _lastName; */
-        protected string _adress;
+        protected string _address;
         protected int _postalCode;
         /* protected string _email;
         protected string _password; */
@@ -48,20 +48,23 @@ namespace ECommerce
 
         // Constructors
         public Customer() {}
-        public Customer(string firstName, string lastName, string email, string password, int age)
+        public Customer(string firstName, string lastName, string email, string password, int age) : base(firstName, lastName, email, password)
         {
             // Called on instantiation
-            this._firstName = firstName;
-            this._lastName = lastName;
-            this._email = email;
-            this._password = password;
             this._age = age;
-            this._id = GenerateId();
+        }
+
+        public Customer(string firstName, string lastName, string email, string password, int age, string address, int postalCode) : base(firstName, lastName, email, password)
+        {
+            // Called on instantiation
+            this._age = age;
+            this._address = address;
+            this._postalCode = postalCode;
         }
 
         // Methods
         // visibilità - valore di ritorno - NomeMetodo()
-        public override void Login(string email, string password)
+        /* public override void Login(string email, string password)
         {
             if (email == this._email & password == this._password)
             {
@@ -71,15 +74,18 @@ namespace ECommerce
             {
                 Console.WriteLine("Wrong username or password");
             }
-        }
+        } */
+
         public void MyOrders()
         {
             Console.WriteLine("These are your orders.");
         }
+
         public void WishList()
         {
             Console.WriteLine("This is your wishlist.");
         }
+
         public void AddToCart(Article article)
         {
             if (this.Age >= article.AgeRestriction)
@@ -91,10 +97,7 @@ namespace ECommerce
                 Console.WriteLine($"{article.Description} added to cart!");
             }
         }
-        public void Signin()
-        {
-            Console.WriteLine("You are now signed in.");
-        }
+
         public void GetAge()
         {
             Console.WriteLine($"{this.FirstName} {this.LastName} is {this.Age} years old");
@@ -104,6 +107,11 @@ namespace ECommerce
         public static void SaySomething()
         {
             Console.WriteLine("Something");
+        }
+
+        public override string ToInlineString()
+        {
+            return $"{this._id}; {this._firstName}; {this._lastName}";
         }
     }
 }

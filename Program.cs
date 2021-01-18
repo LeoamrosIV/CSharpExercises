@@ -13,12 +13,34 @@ namespace CSharpExercises
     {
         static void Main(string[] args)
         {
-            AbstractUserTest();
-            //MeterConvertExercise();
-            //UsersExercise();
-            //SearchExample();
-            //AggregateExercise();
-            //ReadAndWriteFileExercise();
+            foreach (var argument in args)
+            {
+                switch (argument)
+                {
+                    case "5":
+                        AbstractUserTest();
+                        break;
+                    case "4":
+                        MeterConvertExercise();
+                        break;
+                    case "3":
+                        UsersExercise();
+                        break;
+                    case "2":
+                        SearchExample();
+                        break;
+                    case "1":
+                        AggregateExercise();
+                        break;
+                    case "0":
+                        ReadAndWriteFileExercise();
+                        break;
+                    default:
+                        Console.WriteLine("Hello World!");
+                        break;
+                }
+            }
+            
             //PersonFromConsoleExercise(args);
         }
 

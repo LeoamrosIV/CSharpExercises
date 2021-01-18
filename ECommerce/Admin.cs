@@ -2,15 +2,9 @@ using System;
 
 namespace ECommerce
 {
-    class Admin : Customer
+    class Admin : AbstractUser
     {
-        public Admin(string firstName, string lastName, string email)
-        {
-            this._firstName = firstName;
-            this._lastName = lastName;
-            this._email = email;
-            this._id = GenerateId();
-        }
+        public Admin(string firstName, string lastName, string email, string password) : base(firstName, lastName, email, password) {}
 
         public void ManageOrders()
         {
@@ -25,6 +19,11 @@ namespace ECommerce
         public void ManageCustomers()
         {
             Console.WriteLine("Manage customers");
+        }
+
+        public override string ToInlineString()
+        {
+            return $"{this._id}; {this._firstName}; {this._lastName}";
         }
     }
 }
